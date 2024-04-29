@@ -1,0 +1,8 @@
+[auth]
+key = "你的API密钥"
+
+[website]
+url = "你的论坛网址（带请求头）/api/"
+
+[listen]
+thread_id = "监听回复的帖子"

@@ -1,7 +1,8 @@
 import requests
-import json
 import toml
-#from . import plugin
+import json
+import plugin
+import time
 
 # 从toml文件加载配置
 config = toml.load('./config.toml')
@@ -22,9 +23,12 @@ def get_message():
     return message['last_post']['message'],message['last_post']['username']
 
 def send_message(user,message):
-    payload = {'thread_id': thread_id,'message': "本消息由"+user+"请求，内容是：\n"+message}
+    payload = {'thread_id': thread_id,'message': message+"\n本消息由"+user+"请求。"}
     requests.post(url+"posts/",data=payload,headers=header)
 
-message,user = get_message()
-print(message)
-send_message(user,"test")
+if __name__ == "__main__":
+    while True:
+        message,user = get_message()
+        print(message)
+        plugin.command(message,user)
+        time.sleep(20)
