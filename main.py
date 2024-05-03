@@ -9,6 +9,7 @@ config = toml.load('./config.toml')
 
 key = config['auth']['key']
 url = config['website']['url']
+heart = config['listen']['heart']
 thread_id = config['listen']['thread_id']
 
 header = {
@@ -31,4 +32,4 @@ if __name__ == "__main__":
         message,user = get_message()
         print(message)
         plugin.command(message,user)
-        time.sleep(20)
+        time.sleep(heart)
