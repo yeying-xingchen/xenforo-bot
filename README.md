@@ -1,6 +1,6 @@
-# XFCatBot
+# Xenforo-Bot
 ## 介绍
-适用于Xenforo的Python机器人。原本给自己朋友论坛用的，然后因为太多人想要传过来的。
+适用于Xenforo的Python机器人。
 ## 部署
 1. 安装Python3.6+
 2. 安装依赖：
@@ -16,6 +16,6 @@ pip install datetime
 6. 运行start.py。
 至此，你的机器人已成功运行。
 ## 致谢
-感谢[Xenforo](https://xenforo.com/)提供论坛系统，感谢[山水画路社区论坛](https://forum.shanshui.site)提供测试论坛。
+感谢[Xenforo](https://xenforo.com/)提供论坛系统。
 
 © 2024 夜影星辰

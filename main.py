@@ -19,9 +19,19 @@ header = {
 
 def get_message():
     payload = {'with_last_post': True}
-    response = requests.get(url+"threads/"+thread_id, params=payload, headers = header)
-    message = json.loads(response.text)
-    return message['last_post']['message'],message['last_post']['username']
+    try:
+        response = requests.get(url + "threads/" + thread_id, params=payload, headers=header, timeout=100)
+        response.raise_for_status()  # 如果响应状态不是200，抛出异常
+        message = json.loads(response.text)
+        return message['last_post']['message'], message['last_post']['username']
+    except requests.exceptions.RequestException as e:
+        print(f"请求出错: {e}，等待5秒后重试。")
+        time.sleep(5)
+        get_message()
+    except:
+        print(f"未知错误: {e}，等待5秒后重试。")
+        time.sleep(5)
+        get_message()
 
 def send_message(user,message):
     payload = {'thread_id': thread_id,'message': message+"\n本消息由"+user+"请求。"}
